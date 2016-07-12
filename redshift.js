@@ -1,3 +1,5 @@
+"use strict";
+
 const exec = require('child_process').exec;
 
 
@@ -15,7 +17,6 @@ var redshift = {
        
   stop: function() {
     exec('pkill redshift', (error, stdout, stderr) => {
-      console.log("CLOSING SRV");
       if (error) {
         console.error(`exec error: ${error}`);
         return;

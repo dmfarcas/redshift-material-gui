@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import styles from './Home.css';
 import MainAppBar from './MainAppBar';
 import InformationParagraph from './InformationParagraph'
+import DisableRedshift from './DisableRedshift'
 
 
 export default class Home extends Component {
@@ -11,6 +12,7 @@ export default class Home extends Component {
       <div>
         <MainAppBar />
         <InformationParagraph />
+        <DisableRedshift />
       </div>
     );
   }
