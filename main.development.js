@@ -45,9 +45,9 @@ const installExtensions = async () => {
 
 app.on('ready', async () => {
   await installExtensions();
-  
+
   mainWindow = new BrowserWindow({
-    show: false,
+    show: true,
     width: 500,
     height: 728,
     frame: false
@@ -72,7 +72,7 @@ app.on('ready', async () => {
   ]);
   tray.setToolTip('This is my application.')
   tray.setContextMenu(contextMenu);
-  
+
   tray.on('click', function() {
   if (mainWindow !== null && mainWindow.isVisible()) {
     mainWindow.hide();
