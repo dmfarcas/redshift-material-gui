@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -10,21 +10,15 @@ import RaisedButton from 'material-ui/RaisedButton';
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
 export default class LocationModule extends React.Component {
+
+  static propTypes = {
+    defaultLocation: PropTypes.func.isRequired
+  }
+
   state = {
     open: false,
-    lat: 0,
-    long: 0
   };
-  constructor(props) {
-    super(props);
-    let coords = {};
-    navigator.geolocation.getCurrentPosition(geo => {
-      this.setState({
-        lat: geo.coords.latitude,
-        long: geo.coords.longitude
-      })
-    });
-  }
+
 
   handleOpen = () => {
     this.setState({open: true});
@@ -34,7 +28,15 @@ export default class LocationModule extends React.Component {
     this.setState({open: false});
   };
 
+  componentDidMount = () => {
+    const { defaultLocation } = this.props;
+    navigator.geolocation.getCurrentPosition(geo => {
+      defaultLocation(geo.coords.latitude, geo.coords.longitude);
+    });
+  };
+
   render() {
+    const { settings } = this.props;
     const actions = [
       <FlatButton
         label="Cancel"
@@ -50,17 +52,17 @@ export default class LocationModule extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="Set Location" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Location Settings" onTouchTap={this.handleOpen} />
         <Dialog
-          title="Set Location"
+          title="Location Settings"
           actions={actions}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
         <p>We detected that your coordinates are:</p>
-        <p>Latitude: {this.state.lat.toFixed(2)}</p>
-        <p>Longitude: {this.state.long.toFixed(2)}</p>
+        <p>Latitude: {settings.coords.lat.toFixed(2)}</p>
+        <p>Longitude: {settings.coords.long.toFixed(2)}</p>
         </Dialog>
       </div>
     );

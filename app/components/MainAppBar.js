@@ -13,6 +13,8 @@ export default class MainAppBar extends React.Component {
     appWindow.hide();
   }
   render() {
+    const { defaultLocation, settings } = this.props;
+
     return (
       <AppBar
         className={styles.appbar}
@@ -26,7 +28,10 @@ export default class MainAppBar extends React.Component {
         }
 
         iconElementRight={
-          <LocationModule className={styles.appbar} />
+          <LocationModule
+            defaultLocation={defaultLocation}
+            settings={settings}
+            className={styles.appbar} />
         }
         title="Redshift"
       />

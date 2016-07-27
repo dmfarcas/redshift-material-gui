@@ -12,10 +12,13 @@ injectTapEventPlugin();
 
 class App extends Component {
   render() {
-    const { actions } = this.props;
+    const { actions, settings } = this.props;
     return (
       <div>
-        <MainAppBar />
+        <MainAppBar
+            defaultLocation={actions.defaultLocation}
+            settings={settings}
+          />
         <InformationParagraph />
         <ToggleRedshift toggleRedshift={actions.toggleRedshift} />
         <TemperatureControl

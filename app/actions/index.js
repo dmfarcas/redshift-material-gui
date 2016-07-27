@@ -17,3 +17,14 @@ export function nightTimeSlider(event, value) {
       value
   };
 }
+
+
+export function defaultLocation(lat, long) {
+  return {
+    type: types.DEFAULT_LOCATION,
+    value: {
+      lat: lat,
+      long: long
+    }
+  };
+}

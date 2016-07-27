@@ -5,14 +5,14 @@ export default class ToggleRedshift extends Component {
   static propTypes = {
     toggleRedshift: PropTypes.func.isRequired
   }
-  
+
   render() {
     const { toggleRedshift } = this.props
 
     return (
       <Toggle
         label="Disable for an hour (for doing color sensitive work)"
-        defaultToggled="true"
+        defaultToggled={true}
         onClick={toggleRedshift}
       />
     );

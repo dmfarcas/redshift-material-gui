@@ -1,7 +1,8 @@
 import {
   TOGGLE_REDSHIFT,
   NIGHTTIME_SLIDER,
-  DAYTIME_SLIDER
+  DAYTIME_SLIDER,
+  DEFAULT_LOCATION
 } from '../constants/ActionTypes';
 
 import {
@@ -13,7 +14,11 @@ import {
 const initialState = {
   toggleRedshift: true,
   dayTimeSlider: 98,
-  nightTimeSlider: 1
+  nightTimeSlider: 1,
+  coords: {
+    lat: 0,
+    long: 0
+  }
 };
 
 export default function todos(state = initialState, action) {
@@ -22,7 +27,7 @@ export default function todos(state = initialState, action) {
       const toggle = !state.toggleRedshift;
       // TODO: I'll have to remember if we are in day or night time. Interesting cases.
       // Location service first.
-      toggleRedshift(toggle);
+      // toggleRedshift(toggle);
       return Object.assign({}, state, {
         toggleRedshift: toggle,
       });
@@ -31,6 +36,15 @@ export default function todos(state = initialState, action) {
       dayTimeSlider(action.value);
       return Object.assign({}, state, {
         dayTimeSlider: action.value,
+      });
+
+    case DEFAULT_LOCATION:
+      console.log(action);
+      return Object.assign({}, state, {
+        coords: {
+          lat: action.value.lat,
+          long: action.value.long
+        }
       });
 
     case NIGHTTIME_SLIDER:
