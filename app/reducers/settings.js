@@ -2,7 +2,8 @@ import {
   TOGGLE_REDSHIFT,
   NIGHTTIME_SLIDER,
   DAYTIME_SLIDER,
-  DEFAULT_LOCATION
+  DEFAULT_LOCATION,
+  SUNRISE_SUNSET
 } from '../constants/ActionTypes';
 
 import {
@@ -18,6 +19,10 @@ const initialState = {
   coords: {
     lat: 0,
     long: 0
+  },
+  sunriseSunset: {
+    sunrise: "6:00:00 AM",
+    sunset: "21:00:00 PM"
   }
 };
 
@@ -39,11 +44,19 @@ export default function todos(state = initialState, action) {
       });
 
     case DEFAULT_LOCATION:
-      console.log(action);
       return Object.assign({}, state, {
         coords: {
           lat: action.value.lat,
           long: action.value.long
+        }
+      });
+
+
+    case SUNRISE_SUNSET:
+      return Object.assign({}, state, {
+        sunriseSunset: {
+          sunrise: action.value.sunrise,
+          sunset: action.value.sunset
         }
       });
 

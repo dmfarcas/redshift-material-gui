@@ -18,13 +18,22 @@ export function nightTimeSlider(event, value) {
   };
 }
 
-
-export function defaultLocation(lat, long) {
+export function defaultLocation(coords) {
   return {
     type: types.DEFAULT_LOCATION,
     value: {
-      lat: lat,
-      long: long
+      lat: coords[0],
+      long: coords[1]
+    }
+  };
+}
+
+export function sunriseSunset(sunriseSunsetData) {
+  return {
+    type: types.SUNRISE_SUNSET,
+    value: {
+      sunrise: sunriseSunsetData.sunrise,
+      sunset: sunriseSunsetData.sunset
     }
   };
 }

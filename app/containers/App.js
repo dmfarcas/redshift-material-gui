@@ -17,6 +17,7 @@ class App extends Component {
       <div>
         <MainAppBar
             defaultLocation={actions.defaultLocation}
+            sunriseSunset={actions.sunriseSunset}
             settings={settings}
           />
         <InformationParagraph />

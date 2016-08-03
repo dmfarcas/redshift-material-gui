@@ -12,7 +12,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 export default class LocationModule extends React.Component {
 
   static propTypes = {
-    defaultLocation: PropTypes.func.isRequired
+    defaultLocation: PropTypes.func.isRequired,
+    sunriseSunset: PropTypes.func.isRequired
   }
 
   state = {
@@ -29,11 +30,51 @@ export default class LocationModule extends React.Component {
   };
 
   componentDidMount = () => {
-    const { defaultLocation } = this.props;
-    navigator.geolocation.getCurrentPosition(geo => {
-      defaultLocation(geo.coords.latitude, geo.coords.longitude);
+    const { defaultLocation, sunriseSunset } = this.props;
+
+    fetch('http://ipinfo.io',
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(json => {
+      const coords = json.loc
+        .split(",")
+        .map(item => {
+          return parseInt(item)
+        });
+
+      defaultLocation(coords);
+
+      return fetch(`http://api.sunrise-sunset.org/json?lat=${coords[0]}&lng=${coords[1]}`,
+        {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        const sunriseSunsetData = {
+          sunrise: json.results.sunrise,
+          sunset: json.results.sunset
+        }
+        sunriseSunset(sunriseSunsetData);
+      });
+
     });
+
   };
+
 
   render() {
     const { settings } = this.props;
