@@ -7,6 +7,9 @@ import InformationParagraph from '../components/InformationParagraph';
 import ToggleRedshift from '../components/ToggleRedshift';
 import TemperatureControl from '../components/TemperatureControl';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import Paper from 'material-ui/Paper';
+import styles from './App.css';
+
 
 injectTapEventPlugin();
 
@@ -20,12 +23,18 @@ class App extends Component {
             sunriseSunset={actions.sunriseSunset}
             settings={settings}
           />
-        <InformationParagraph />
-        <ToggleRedshift toggleRedshift={actions.toggleRedshift} />
-        <TemperatureControl
-          dayTimeSlider={actions.dayTimeSlider}
-          nightTimeSlider={actions.nightTimeSlider}
-        />
+          
+        <Paper className={styles.generalinfo} zDepth={2}>
+          <InformationParagraph />
+        </Paper>
+        
+        <Paper className={styles.settings} zDepth={2}>
+          <ToggleRedshift toggleRedshift={actions.toggleRedshift} />
+          <TemperatureControl
+            dayTimeSlider={actions.dayTimeSlider}
+            nightTimeSlider={actions.nightTimeSlider}
+          />
+        </Paper>  
       </div>
     );
   }
