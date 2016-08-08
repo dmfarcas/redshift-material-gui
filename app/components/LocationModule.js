@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import styles from './LocationModule.css'
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
  * in this example [FlatButtons](/#/components/flat-button).
@@ -93,7 +93,11 @@ export default class LocationModule extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="Location Settings" onTouchTap={this.handleOpen} />
+        <RaisedButton 
+          label="Location Settings" 
+          onTouchTap={this.handleOpen} 
+          className={styles.locationbutton}
+        />
         <Dialog
           title="Location Settings"
           actions={actions}
