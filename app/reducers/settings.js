@@ -14,8 +14,9 @@ import {
 
 const initialState = {
   toggleRedshift: true,
-  dayTimeSlider: 98,
-  nightTimeSlider: 1,
+  dayTimeSlider: 6500,
+  nightTimeSlider: 2700,
+  lastChangedValue: 6500, //I don't think the last changed value should be displayed.
   coords: {
     lat: 0,
     long: 0
@@ -41,6 +42,7 @@ export default function todos(state = initialState, action) {
       dayTimeSlider(action.value);
       return Object.assign({}, state, {
         dayTimeSlider: action.value,
+        lastChangedValue: action.value
       });
 
     case DEFAULT_LOCATION:
@@ -64,6 +66,7 @@ export default function todos(state = initialState, action) {
       nightTimeSlider(action.value);
       return Object.assign({}, state, {
         nightTimeSlider: action.value,
+        lastChangedValue: action.value
       });
 
     default:

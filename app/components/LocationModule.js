@@ -93,13 +93,13 @@ export default class LocationModule extends React.Component {
 
     return (
       <div>
-        <RaisedButton 
-          label="Location Settings" 
-          onTouchTap={this.handleOpen} 
+        <RaisedButton
+          label="Time and Location Settings"
+          onTouchTap={this.handleOpen}
           className={styles.locationbutton}
         />
         <Dialog
-          title="Location Settings"
+          title="Time and Location Settings"
           actions={actions}
           modal={false}
           open={this.state.open}

@@ -2,4 +2,5 @@ body {
     background-image: url("../app/assets/bg_pattern.png");
     background-repeat: repeat;
     margin: 0;
+    overflow: hidden;
 }
