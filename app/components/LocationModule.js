@@ -2,7 +2,9 @@ import React, { PropTypes } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import styles from './LocationModule.css'
+import styles from './LocationModule.css';
+import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
+
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
  * in this example [FlatButtons](/#/components/flat-button).
@@ -14,7 +16,7 @@ export default class LocationModule extends React.Component {
   static propTypes = {
     defaultLocation: PropTypes.func.isRequired,
     sunriseSunset: PropTypes.func.isRequired
-  }
+  };
 
   state = {
     open: false,
@@ -105,6 +107,24 @@ export default class LocationModule extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
+        <section style={{height: "100%"}}>
+              <GoogleMapLoader
+                containerElement={
+                  <div
+                    style={{
+                      height: "100%",
+                    }}
+                  />
+                }
+                googleMapElement={
+                  <GoogleMap
+                    ref={(map) => console.log(map)}
+                    defaultZoom={3}
+                    defaultCenter={{ lat: -25.363882, lng: 131.044922 }}                  >
+                  </GoogleMap>
+                }
+              />
+            </section>
         <p>We detected that your coordinates are:</p>
         <p>Latitude: {settings.coords.lat.toFixed(2)}</p>
         <p>Longitude: {settings.coords.long.toFixed(2)}</p>

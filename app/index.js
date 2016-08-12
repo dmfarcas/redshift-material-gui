@@ -6,7 +6,7 @@ import App from './containers/App'
 import configureStore from './store/configureStore'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { amber800 } from 'material-ui/styles/colors';
+import { blueGrey600 } from 'material-ui/styles/colors';
 
 
 const store = configureStore()
@@ -14,7 +14,7 @@ const store = configureStore()
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: amber800,
+    primary1Color: blueGrey600,
   }
 });
 
