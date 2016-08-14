@@ -9,8 +9,10 @@ import {
 import {
   toggleRedshift,
   nightTimeSlider,
-  dayTimeSlider
+  dayTimeSlider,
+  sunriseSunset
 } from './ipc';
+import Moment from 'moment';
 
 const initialState = {
   toggleRedshift: true,
@@ -24,15 +26,14 @@ const initialState = {
   sunriseSunset: {
     sunrise: "6:00:00 AM",
     sunset: "21:00:00 PM"
-  }
+  },
+  isItNight: false
 };
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_REDSHIFT:
       const toggle = !state.toggleRedshift;
-      // TODO: I'll have to remember if we are in day or night time. Interesting cases.
-      // Location service first.
       // toggleRedshift(toggle);
       return Object.assign({}, state, {
         toggleRedshift: toggle,
@@ -55,6 +56,10 @@ export default function todos(state = initialState, action) {
 
 
     case SUNRISE_SUNSET:
+      sunriseSunset({
+          sunrise: Moment(action.value.sunrise, "h:mm:ss A").unix(),
+          sunset: Moment(action.value.sunset, "h:mm:ss A").unix()
+      });
       return Object.assign({}, state, {
         sunriseSunset: {
           sunrise: action.value.sunrise,

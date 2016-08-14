@@ -4,7 +4,7 @@ export default class AutostartCheckbox extends Component {
   render() {
     return (
       <Checkbox
-        label="Start Redshift automatically"
+        label="Start Redshift automatically at startup"
       />
     );
   }
