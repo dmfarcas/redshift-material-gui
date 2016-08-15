@@ -21,18 +21,21 @@ class App extends Component {
     const { actions, settings } = this.props;
     return (
       <div>
-        <MainAppBar
-            defaultLocation={actions.defaultLocation}
-            sunriseSunset={actions.sunriseSunset}
-            settings={settings} //TODO do not send entire object
-          />
 
-          <InformationParagraph
-            settings={settings}
-          />
+        <MainAppBar
+          defaultLocation={actions.defaultLocation}
+          sunriseSunset={actions.sunriseSunset}
+          settings={settings} //TODO do not send entire object
+        />
+
+        <InformationParagraph
+          settings={settings}
+        />
 
         <Paper className={styles.settings} zDepth={2}>
+
           <ToggleRedshift toggleRedshift={actions.toggleRedshift} />
+
           <Divider className={styles.divider_temp_settings} />
 
           <TemperatureControl
@@ -40,11 +43,16 @@ class App extends Component {
             nightTimeSlider={actions.nightTimeSlider}
             dayTimeSliderValue={settings.dayTimeSlider}
             nightTimeSliderValue={settings.nightTimeSlider}
-
           />
+
           <Divider className={styles.divider_start_auto} />
-          <AutostartCheckbox />
+          <AutostartCheckbox
+          autostart={actions.autostart}
+          autostartValue={settings.autostart}
+          />
+
         </Paper>
+
       </div>
     );
   }

@@ -3,15 +3,18 @@ import {
   NIGHTTIME_SLIDER,
   DAYTIME_SLIDER,
   DEFAULT_LOCATION,
-  SUNRISE_SUNSET
+  SUNRISE_SUNSET,
+  AUTOSTART
 } from '../constants/ActionTypes';
 
 import {
   toggleRedshift,
   nightTimeSlider,
   dayTimeSlider,
-  sunriseSunset
+  sunriseSunset,
+  autostart
 } from './ipc';
+
 import Moment from 'moment';
 
 const initialState = {
@@ -27,16 +30,18 @@ const initialState = {
     sunrise: "6:00:00 AM",
     sunset: "21:00:00 PM"
   },
-  isItNight: false
+  isItNight: false,
+  autostart: true
 };
+
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_REDSHIFT:
-      const toggle = !state.toggleRedshift;
+      const toggleRedshift = !state.toggleRedshift;
       // toggleRedshift(toggle);
       return Object.assign({}, state, {
-        toggleRedshift: toggle,
+        toggleRedshift: toggleRedshift,
       });
 
     case DAYTIME_SLIDER:
@@ -73,6 +78,15 @@ export default function todos(state = initialState, action) {
         nightTimeSlider: action.value,
         lastChangedValue: action.value
       });
+
+
+    case AUTOSTART:
+      const toggleAutostart = !state.autostart;
+      autostart(toggleAutostart);
+      return Object.assign({}, state, {
+        autostart: toggleAutostart,
+      });
+
 
     default:
       return state;

@@ -15,3 +15,7 @@ export function dayTimeSlider(state) {
 export function sunriseSunset(state) {
   ipcRenderer.send('sunrise-sunset', state);
 }
+
+export function autostart(state) {
+  ipcRenderer.send('autostart', state);
+}

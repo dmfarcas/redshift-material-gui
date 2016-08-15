@@ -98,9 +98,11 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "auto-launch": "^3.0.0",
     "classnames": "^2.2.5",
     "css-modules-require-hook": "^4.0.0",
     "electron-debug": "^1.0.1",
+    "es6-promise": "^3.2.1",
     "font-awesome": "^4.6.3",
     "material-ui": "^0.15.2",
     "maxmind": "^1.1.0",

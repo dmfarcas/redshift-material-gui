@@ -37,3 +37,11 @@ export function sunriseSunset(sunriseSunsetData) {
     }
   };
 }
+
+
+export function autostart(event, value) {
+  return {
+    type: types.AUTOSTART,
+    value
+  };
+}
