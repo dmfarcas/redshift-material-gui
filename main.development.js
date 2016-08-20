@@ -37,21 +37,13 @@ const installExtensions = async () => {
 };
 
 
-//TODO: move the app contents here at some point.
-// mb.on('ready', function ready () {
-//   console.log('app is ready')
-//   // your app code here
-// })
-
 app.on('ready', async () => {
   await installExtensions();
 
   mainWindow = new BrowserWindow({
     show: true,
-    width: 400,
-    height: 450,
-    x: 500,
-    y: -99,
+    width: 512,
+    height: 765,
     frame: false
   });
 
@@ -80,6 +72,7 @@ app.on('ready', async () => {
     mainWindow.hide();
   } else if (!mainWindow.isVisible()) {
     mainWindow.show();
+    mainWindow.focus();
   }
 });
 

@@ -2,54 +2,28 @@ import { exec } from 'child_process';
 import { log, info, err } from './logger';
 
 
-const redshift = (function rsFunc() {
+const redshift = (() => {
   const start = function starting() {
-    info("Starting")
-    exec('redshift -t 2548K:6874K', (error, stdout, stderr) => {
-      if (error) {
-        err(`exec error: ${error}`);
-        return;
-      }
-      log(`stdout: ${stdout}`);
-      log(`stderr: ${stderr}`);
-    });
-  }
+    info("Starting");
+    exec('redshift -t 2548K:6874K', errorHandler);
+  };
 
   const stop = function stopping() {
-    info("Stopping Redshift using '-x' flag.")
-    exec('redshift -x', (error, stdout, stderr) => {
-      if (error) {
-        err(`exec error: ${error}`);
-        return;
-      }
-      log(`stdout: ${stdout}`);
-      log(`stderr: ${stderr}`);
-    });
-  }
+    info("Stopping Redshift using '-x' flag.");
+    exec('redshift -x', errorHandler);
+  };
 
   const kill = function killing() {
-    exec('pkill redshift', (error, stdout, stderr) => {
-      info("Killing Redshift process.");
-      if (error) {
-        err(`exec error: ${error}`);
-        return;
-      }
-      log(`stdout: ${stdout}`);
-      log(`stderr: ${stderr}`);
-    });
-  }
+    info("Killing Redshift process.");
+
+    exec('pkill redshift', errorHandler);
+  };
 
   const preview = function previewing(setting) {
     info(`Previewing with the following settings: ${setting}`);
-    exec(`redshift -O ${setting}`, (error, stdout, stderr) => {
-      if (error) {
-        err(`exec error: ${error}`);
-        return;
-      }
-      log(`stdout: ${stdout}`);
-      log(`stderr: ${stderr}`);
-    });
-  }
+    exec(`redshift -O ${setting}`, errorHandler);
+  };
+
 
   return {
     start: start,
@@ -59,5 +33,10 @@ const redshift = (function rsFunc() {
   };
 })();
 
+function errorHandler(error) {
+  if(error) {
+    err(error);
+  }
+}
 
-module.exports = redshift;
+export default redshift;

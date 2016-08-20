@@ -1,0 +1,20 @@
+.generalinfo {
+  margin: 25px 10px;
+  padding: 20px;
+}
+
+
+.settings {
+  margin: 10px 10px;
+  padding: 20px;
+}
+
+.divider_start_auto {
+  margin-bottom: 20px!important;
+}
+
+
+.divider_temp_settings {
+  margin-bottom: 18px!important;
+  margin-top: 28px !important;
+}

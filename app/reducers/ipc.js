@@ -11,3 +11,11 @@ export function nightTimeSlider(state) {
 export function dayTimeSlider(state) {
   ipcRenderer.send('day-time-slider', state);
 }
+
+export function sunriseSunset(state) {
+  ipcRenderer.send('sunrise-sunset', state);
+}
+
+export function autostart(state) {
+  ipcRenderer.send('autostart', state);
+}

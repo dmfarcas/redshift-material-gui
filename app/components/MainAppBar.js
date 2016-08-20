@@ -32,7 +32,8 @@ export default class MainAppBar extends React.Component {
             defaultLocation={defaultLocation}
             sunriseSunset={sunriseSunset}
             settings={settings}
-            className={styles.appbar} />
+            className={styles.plm}
+          />
         }
         title="Redshift"
       />

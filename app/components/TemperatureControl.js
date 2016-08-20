@@ -10,23 +10,24 @@ export default class TemperatureControl extends Component {
   }
 
   render() {
-    const { dayTimeSlider, nightTimeSlider } = this.props;
+    const { dayTimeSlider, nightTimeSlider, nightTimeSliderValue, dayTimeSliderValue} = this.props;
     return (
       <div>
-        <br />
         <Slider
-          defaultValue={6500}
+          value={dayTimeSliderValue}
           max={6500}
           min={2700}
           step={1}
           onChange={dayTimeSlider}
+          description={`Day time temperature, currently set at ${dayTimeSliderValue}k`}
         />
         <Slider
-          defaultValue={2700}
+          value={nightTimeSliderValue}
           max={6500}
           min={2700}
           step={1}
           onChange={nightTimeSlider}
+          description={`Night time temperature, currently set at ${nightTimeSliderValue}k`}
         />
       </div>
     );
