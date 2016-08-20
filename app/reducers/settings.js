@@ -62,13 +62,14 @@ export default function todos(state = initialState, action) {
 
     case SUNRISE_SUNSET:
       sunriseSunset({
-          sunrise: Moment(action.value.sunrise, "h:mm:ss A").unix(),
-          sunset: Moment(action.value.sunset, "h:mm:ss A").unix()
+          sunrise: Moment.utc(action.value.sunrise, "h:mm:ss A").local().format("mm HH"),
+          sunset: Moment.utc(action.value.sunset, "h:mm:ss A").local().format("mm HH")
       });
+
       return Object.assign({}, state, {
         sunriseSunset: {
-          sunrise: action.value.sunrise,
-          sunset: action.value.sunset
+          sunrise: Moment.utc(action.value.sunrise, "h:mm:ss A").local().format("HH:mm A"),
+          sunset: Moment.utc(action.value.sunset, "h:mm:ss A").local().format("HH:mm A")
         }
       });
 
@@ -82,7 +83,7 @@ export default function todos(state = initialState, action) {
 
     case AUTOSTART:
       const toggleAutostart = !state.autostart;
-      autostart(toggleAutostart);
+      autostart(toggle);
       return Object.assign({}, state, {
         autostart: toggleAutostart,
       });

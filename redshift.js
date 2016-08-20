@@ -20,16 +20,22 @@ const redshift = (() => {
   };
 
   const preview = function previewing(setting) {
+    //TODO preview will be only for previewing a setting via slider.
     info(`Previewing with the following settings: ${setting}`);
     exec(`redshift -O ${setting}`, errorHandler);
   };
 
+  const set = function previewing(setting) {
+    info(`Setting temperature: ${setting}`);
+    exec(`redshift -O ${setting}`, errorHandler);
+  };
 
   return {
     start: start,
     stop: stop,
     kill: kill,
-    preview: preview
+    preview: preview,
+    set: set
   };
 })();
 

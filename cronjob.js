@@ -1,8 +1,18 @@
+import crontab from 'node-crontab';
+import { set } from './redshift'
 export function setCrons(data) {
-  console.log("CONRJRRJ", data);
 
-  var crontab = require('node-crontab');
-  var jobId = crontab.scheduleJob("*/1 * * * *", function(){ //This will call this function every 2 minutes
-    console.log("It's been 1 minutes!");
+  let { sunrise, sunset } = data;
+
+  sunset = "07 17";
+
+  let sunrisetCron = crontab.scheduleJob(`${sunrise} * * *`, () => {
+    set(6500);
+  });
+  console.log(`${sunset} * * *`)
+
+  let sunsetCron = crontab.scheduleJob(`${sunset} * * *`, () => {
+    console.log(`${sunset} * * *`)
+    set(2700);
   });
   }
