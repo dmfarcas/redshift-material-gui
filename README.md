@@ -1,4 +1,3 @@
 # redshift-material-gui
 
-## TODO
-* Install momentjs
+Halted progress, moved to Windows and flux works well here.
